@@ -1,0 +1,47 @@
+<html>
+<H1>Student's Page</H1>
+    
+    <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head>
+ 
+<div class="topnav navpad">
+  <a class="active" href="http://flip3.engr.oregonstate.edu:7708/students">Students</a>
+  <a href="http://flip3.engr.oregonstate.edu:7708/guitars">Guitars</a>
+  <a href="http://flip3.engr.oregonstate.edu:7708/songs">Songs</a>
+  <a href=http://flip3.engr.oregonstate.edu:7708/chords>Chords</a>
+</div>   
+
+    
+<h3>New Student</h3>    
+ <form id="addStudent" action="/students" method="post">
+    First name: <input name="fname" type="text"><br>
+    Last name: <input name="lname" type="text"><br>
+    Can you Sing?<br> 
+      <input type="radio" name="vocals" value="1"> Yes<br>
+  <input type="radio" name="vocals" value="0"> No<br> 
+     <input value="Submit" type="submit">
+ </form>
+<br>
+    
+<h3>Returning Student</h3>
+Please Select and See other Students Below
+<table>
+    <thead> 
+        <tr><th>First Name</th> 
+        <th>Last Name</th> 
+        <th>Vocals</th>  
+    </tr></thead> 
+    
+    <tbody>
+        {{#each students}}
+        <tr> 
+            <td>{{fname}}</td> 
+            <td>{{lname}}</td> 
+            <td>{{vocals}}</td>
+            <td><button onclick="deletePerson({{s_ID}})">Delete</button></td>
+            <td><a href="/students/{{s_ID}}">Update</a></td>
+        </tr>
+    {{/each}} 
+    </tbody> 
+</table> 
+    

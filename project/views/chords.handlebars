@@ -1,0 +1,95 @@
+<h1>Chord Dictionary</h1>     
+
+<div class="topnav navpad">
+    
+   <a href="http://flip3.engr.oregonstate.edu:7708/students">Students</a>
+    <a href="http://flip3.engr.oregonstate.edu:7708/guitars">Guitars</a>
+    <a href="http://flip3.engr.oregonstate.edu:7708/songs">Songs</a>
+<a class="active" href=http://flip3.engr.oregonstate.edu:7708/chords>Chords</a>
+
+</div> 
+
+<h3>What Chords Do you Know</h3>
+<P>These are the chords the student has learned</P>
+<form id="/student_chords" action="/student_chords" method="post">
+
+    
+ Chord:<select name="inputChord"> 
+    <option disabled selected value> -- select an option -- </option>
+        {{#each chords_drop}}
+        <option value="{{c_ID}}">{{name}}</option>
+        {{/each}}
+        </select><br>
+     Student Name:<select name="student_name"> 
+    <option disabled selected value> -- select an option -- </option>
+        {{#each students_drop}}
+        <option value="{{s_ID}}">{{fname}} {{lname}}</option>
+        {{/each}}
+        </select><br>
+    
+    
+     <input value="Submit" type="submit">
+ </form>
+    
+
+<table>
+    <thead> 
+        <tr><th>Student Name</th> 
+            <th>Chord Name</th> 
+    </tr></thead> 
+    <tbody>
+        {{#each studentchords}}
+        <tr>
+        
+        <td>{{fname}} {{lname}}</td>
+        <td>{{chord_name}}</td>  
+            <td><button onclick="deleteChord({{chord_Id}},{{s_ID}})">Delete</button></td>
+        
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<H3>Search of Chords by Major Sound</H3> 
+<p>Great for trying to mix in new sounds</p>
+<form id='search_chords' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search chords by major sound:</label>
+    <input id='major_sound' type='text' name='major_sound' value=''>
+    <input type="button" value="Search" onclick="searchChordByMajor()">
+</form>
+
+<H3>Below is a List Chords is the database</H3>
+<P>Use the Filter Above</P>
+<table>
+    <thead> 
+        <tr><th>Chord Name</th> 
+        <th>Major Sound</th> 
+        <th>Fingering</th>
+        <th>Fret</th>  
+    </tr></thead> 
+    <tbody>
+        {{#each chords}}
+        <tr> 
+        <td>{{name}}</td> 
+        <td>{{major_sound}}</td> 
+        <td>{{fingering}}</td>
+        <td>{{fret}}</td>
+        </tr>
+    
+    {{/each}} 
+    </tbody>
+</table>
+
+<h2>New Chord</h2>
+<h3>Please do not compromise chord database</h3>
+<form id="addChord" action="/chords" method="post">
+    Chord Name: <input name="chord_name" type="text"><br>
+    Major Sound: <input name="major_sound" type="text"><br>
+    Fingering: <input name="fingering" type="text"><br>
+    Fret: <input name="fret" type="text"><br>
+ <input value="Submit" type="submit">
+</form>
+
+
+
+

@@ -1,0 +1,54 @@
+<h1>Guitar Info</h1>
+<div class="topnav navpad">
+    
+  <a href="http://flip3.engr.oregonstate.edu:7708/students">Students</a>
+  <a class="active" href="http://flip3.engr.oregonstate.edu:7708/guitars">Guitars</a>
+  <a href="http://flip3.engr.oregonstate.edu:7708/songs">Songs</a>
+  <a href=http://flip3.engr.oregonstate.edu:7708/chords>Chords</a>
+</div> 
+
+
+
+<h3>Add a Guitar</h3>
+
+<form id="addGuitar" action="/guitars" method="post">
+    Guitar Name/Alias: <input name="name" type="text"><br>
+    <input type="radio" name="type" value="Electric"> Electric<br>
+  <input type="radio" name="type" value="Acoustic"> Acoustic<br> 
+    
+    Student Name:<select name="student_name"> 
+    <option disabled selected value> -- select an option -- </option>
+        {{#each students_drop}}
+        <option value="{{s_ID}}">{{fname}} {{lname}}</option>
+        {{/each}}
+        </select><br>
+    
+    
+     <input value="Submit" type="submit">
+ </form>
+<br>
+
+
+<h3>Your Guitars</h3>
+See your guitars below
+<table>
+    <thead> 
+        <tr><th>Name/Alias</th> 
+        <th>Guitar Type</th>  
+        <th>Student</th> 
+    </tr></thead> 
+    <tbody>
+        {{#each guitars}}
+        <tr> 
+            <td>{{name}}</td> 
+            <td>{{type}}</td> 
+            <td>{{fname}} {{lname}}</td>
+            <td><button onclick="deleteGuitar({{g_ID}})">Delete</button></td>
+        </tr>
+    
+    {{/each}} 
+    </tbody> 
+</table> 
+    
+
+                                                        
